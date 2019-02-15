@@ -18,8 +18,21 @@
      *
      */
     static double [] insertionSort (double a[]){
-
-        //todo: implement the sort
+	double temp;
+    		int size =  a.length;
+    		for( int i =1; i<size; i++ )
+    		{ 
+    			for( int j = i; j> 0; j--)
+    			{ 
+    				if( a[j] < a[j-1] )
+    				{ 
+    					temp = a[j]; 
+    					a[j] = a[j-1]; 
+    					a[j-1] =temp;
+    				}
+    			}
+    		}
+    		return a;
     }//end insertionsort
 
     /**
@@ -81,13 +94,24 @@
      *
      */
     static double [] selectionSort (double a[]){
-
-         //todo: implement the sort
-
-    }//end selectionsort
-
-   
-
+			int size = a.length;
+    		for( int i =0; i < size; i++) 
+    		{
+    			int minmumValIndex = i; 
+    			for( int j = i+1; j < size;j++) 
+    			{ 
+    				if( a[j] < a[minmumValIndex] )
+    				{ 
+    					minmumValIndex =j; 
+    				}
+    			}
+    			double temp = a[minmumValIndex]; 
+    			a[minmumValIndex] = a[i]; 
+    			a[i] = temp;
+    		}
+         
+    		return a; 
+	 }//end selectionsort
 
     public static void main(String[] args) {
 
