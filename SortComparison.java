@@ -8,7 +8,7 @@
  *  @version HT 2019
  */
 
- class SortComparison {
+	class SortComparison {
 
     /**
      * Sorts an array of doubles using InsertionSort.
@@ -32,7 +32,7 @@
     				}
     			}
     		}
-    		return a;
+		return a;
     }//end insertionsort
 
     /**
@@ -118,12 +118,50 @@
      * @return after the method returns, the array must be in ascending sorted order.
      */
     static double[] mergeSortRecursive (double a[]) {
+    		double auxilary[] = new double[a.length];
+    		recursiveMerge( a, auxilary, 0, a.length -1); 
+    		return a; 
+    }//end mergeSortRecursive
     	
-
-    	//todo: implement the sort
-	
-   }//end mergeSortRecursive
-    	
+    static void recursiveMerge(double a[], double aux[], int low, int high) 
+    {
+    		if( high <= low)
+    		{ 
+    			return;
+    		}
+    		int mid = low +( high -low) /2; 
+    		recursiveMerge(a,aux,low,mid); 
+    		recursiveMerge(a,aux,mid+1,high);
+    		merge(a,aux,low,mid,high); 
+    }
+    
+    static void merge(double a[], double aux[], int low, int mid, int high) 
+    {
+    		for( int index =0; index < a.length; index++)
+    		{ 
+    			aux[index] = a[index]; 
+  
+    		}
+    		int i = low; 
+    		int j = mid +1; 
+    		for( int k = low; k <= high; k++)
+    		{ 
+    			if( i > mid)
+    			{ 
+    				a[k] = aux[j++]; 
+    			}
+    			else if ( j > high)
+    			{ 
+    				a[k] = aux[i++]; 
+    			}
+    			else if( aux[j] <  aux[i])
+    			{ 
+    				a[k] = aux[j++]; 	
+    			}
+    			// else 
+    			a[k] = aux[i++]; 
+    		}
+    }
     
     /**
      * Sorts an array of doubles using Selection Sort.
