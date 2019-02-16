@@ -44,9 +44,48 @@
      */
     static double [] quickSort (double a[]){
 	
-		 //todo: implement the sort
-
+		 recursiveQuick( a, 0, a.length-1);
+    		return a; 
     }//end quicksort
+    
+    static void recursiveQuick (double a[],int low, int high){
+    		if( high <= low) { 
+    			return; 
+    		}
+    		int pivotIndex = partition(a,low,high); 
+    		recursiveQuick(a,low, pivotIndex-1); 
+    		recursiveQuick(a, pivotIndex+1,high); 
+    }
+    
+    private static int partition(double[] a,int low, int high){ 
+    		int i =low; 
+    		int j = high +1; 
+    		double pivot = a[low]; 
+    		while( true) { 
+    			while(a[++i].compareTo(pivot) < 0 ) { 
+    				if( i == high )
+    				{
+    					break; 
+    				}
+    			}
+    			while(pivot.compareTo(a[--j]) <0 ) { 
+    				if(j == low)
+    				{
+    					break; 
+    				}
+    			}
+    			if( i >= j)
+    			{ 
+    				break; 
+    			}
+    			double temp = a[i]; 
+    			a[i] = a[j]; 
+    			a[j] = temp; 
+    		}
+    		a[low] = a[j]; 
+    		a[j] = pivot; 
+    		return j; 
+    }
 
     /**
      * Sorts an array of doubles using Merge Sort.
