@@ -62,13 +62,13 @@
     		int j = high +1; 
     		double pivot = a[low]; 
     		while( true) { 
-    			while(a[++i].compareTo(pivot) < 0 ) { 
+    		while(a[++i] < pivot ) { 
     				if( i == high )
     				{
     					break; 
     				}
     			}
-    			while(pivot.compareTo(a[--j]) <0 ) { 
+    			while(pivot < a[--j] ) { 
     				if(j == low)
     				{
     					break; 
@@ -102,13 +102,20 @@
      * @return after the method returns, the array must be in ascending sorted order.
      */
 
-    static double[] mergeSortIterative (double a[]) {
-
-		 //todo: implement the sort
-	
+     static double[] mergeSortIterative (double a[]) {
+    		int size = a.length; 
+    		double[] aux= new double[size];
+    		for( int subSize =1;subSize < size; subSize = subSize + subSize )
+    		{ 
+    			for ( int low =0; low < size - subSize; low += subSize + subSize)
+    			{
+    				merge( a,aux,low,low+subSize-1, 
+    						Math.min(low+subSize+subSize-1, size-1));
+    			}
+    		}
+		 
+    		return a;
     }//end mergesortIterative
-    
-    
     
     /**
      * Sorts an array of doubles using recursive implementation of Merge Sort.
