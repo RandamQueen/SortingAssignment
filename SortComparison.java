@@ -144,7 +144,7 @@
     
     static void merge(double a[], double aux[], int low, int mid, int high) 
     {
-    		for( int index =0; index < a.length; index++)
+    		for( int index =low; index <= high; index++)
     		{ 
     			aux[index] = a[index]; 
   
