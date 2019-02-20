@@ -151,22 +151,28 @@
     		}
     		int i = low; 
     		int j = mid +1; 
-    		for( int k = low; k <= high; k++)
+    		for( int index = low; index <= high; index++)
     		{ 
     			if( i > mid)
     			{ 
-    				a[k] = aux[j++]; 
+    				a[index] = aux[j]; 
+    				j++; 
     			}
-    			else if ( j > high)
+    			else if(j > high)
     			{ 
-    				a[k] = aux[i++]; 
+    				a[index] = aux[i];
+    				i++; 
     			}
-    			else if( aux[j] <  aux[i])
+    			else if( aux[i] <= aux[j])
     			{ 
-    				a[k] = aux[j++]; 	
+    				a[index] = aux[i];
+    				i++; 
     			}
-    			// else 
-    			a[k] = aux[i++]; 
+    			else 
+    			{ 
+    				a[index] = aux[j]; 
+    				j++; 
+    			}
     		}
     }
     
@@ -198,7 +204,24 @@
 	 }//end selectionsort
 
     public static void main(String[] args) {
+	FileReader fileRead = new FileReader("numbers10.txt"); 
+	BufferedReader buffRead = new BufferedReader(fileRead);
+    	int TEST_ARRAY_SIZE = 10; 
+    	double[] testArray = new double[TEST_ARRAY_SIZE];
+	for(int index = 0; index<TEST_ARRAY_SIZE -1 ; index++ )
+	{
+		testArray[index] = Double.parseDouble(buffRead.readLine());
+	}
 
+    	 buffRead.close(); 
+    	 fileRead.close(); 
+    	 mergeSortIterative( testArray); 
+    	 System.out.println("Sorted array:"); 
+    	 for(int index = 0; index<TEST_ARRAY_SIZE -1 ; index++ )
+    		{
+    		 System.out.print( testArray[index]+ ","  );
+    		}
+    	 
         //todo: do experiments as per assignment instructions
     }
 
