@@ -215,14 +215,10 @@
 
     	 buffRead.close(); 
     	 fileRead.close(); 
-    	 mergeSortIterative( testArray); 
-    	 System.out.println("Sorted array:"); 
-    	 for(int index = 0; index<TEST_ARRAY_SIZE -1 ; index++ )
-    		{
-    		 System.out.print( testArray[index]+ ","  );
-    		}
-    	 
-        //todo: do experiments as per assignment instructions
+    	 long startTime = System.currentTimeMillis();
+    	 selectionSort( testArray); 
+    	 long endTime = System.currentTimeMillis();
+	 System.out.println("That took " + (endTime - startTime) + " milliseconds");
     }
 
  }//end class
